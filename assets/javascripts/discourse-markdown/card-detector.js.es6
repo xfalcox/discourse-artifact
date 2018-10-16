@@ -1,4 +1,4 @@
-import { cards } from "discourse/plugins/discourse-artifact/artifact/card-database";
+import { cards } from "discourse-markdown/card-database";
 
 // https://stackoverflow.com/a/6969486
 function escapeRegExp(string) {
