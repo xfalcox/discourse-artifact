@@ -1,0 +1,4 @@
+plugins:
+  discourse_artifact_enabled:
+    default: false
+    client: true
