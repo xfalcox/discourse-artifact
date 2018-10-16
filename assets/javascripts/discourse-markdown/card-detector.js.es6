@@ -1,4 +1,13 @@
-import { cards } from "artifact/card-database";
+import { cards } from "discourse/plugins/discourse-artifact/artifact/card-database";
+
+// https://stackoverflow.com/a/6969486
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+}
+
+function cardRegex() {
+  return new RegExp(cards.map((c) => escapeRegExp(c.name)).join("|"));
+}
 
 export function setup(helper) {
    if(!helper.markdownIt) { return; }
@@ -11,7 +20,7 @@ export function setup(helper) {
 
    helper.registerPlugin(md=>{
      md.core.textPostProcess.ruler.push('cardmention', {
-       matcher: /(Axe)|(axe)/,  //regex flags are NOT supported
+       matcher: cardRegex(),  //regex flags are NOT supported
        onMatch: function(buffer, matches, state) {
 
            let tag = "span";
