@@ -27,14 +27,13 @@ export function setup(helper) {
        matcher: cardRegex(),  //regex flags are NOT supported
        onMatch: function(buffer, matches, state) {
 
-         let cardName = cards.find((e) => e.name === matches[0]).misc.name_plainstring;
-         let url = `https://articraft.io/embed/cards/view/${cardName}`;
+         let simpleName = matches[0].toLowerCase().replace(/[^a-z0-9]+/g,'');
 
          let tag = "span";
          let className = "artifact-card";
 
          let token = new state.Token("card_open", tag, 1);
-         token.attrs = [["class", className], ["data-tooltip", `<iframe src="${url}" height="370" width="245">`]];
+         token.attrs = [["class", className], ["data-tooltip", simpleName]];
 
          buffer.push(token);
 
