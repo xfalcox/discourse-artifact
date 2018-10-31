@@ -1,10 +1,9 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
-import { registerTooltip } from "discourse/lib/tooltip";
+import { hoverExtension } from "discourse/plugins/discourse-artifact/mixins/card-hover-extension";
 
 function initializeDiscourseArtifact(api) {
   api.decorateCooked($elem => {
-    $(".artifact-card", $elem).previewArtifactCard();
-    registerTooltip($(".artifact-card", $elem));
+    hoverExtension($elem);
   });
 }
 

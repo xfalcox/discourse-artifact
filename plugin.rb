@@ -6,4 +6,4 @@
 
 enabled_site_setting :discourse_artifact_enabled
 
-register_asset "javascripts/preview-cards.js"
+register_asset "stylesheets/d-tooltip.scss"

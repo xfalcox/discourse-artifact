@@ -1,0 +1,60 @@
+$d-tooltip-background: $secondary;
+$d-tooltip-border: $primary-medium;
+
+.d-tooltip {
+  display: none;
+  background-color: transparent;
+  position: absolute;
+  z-index: 1000;
+  border: 0;
+  max-width: 300px;
+  margin-top: 5px;
+  overflow-wrap: break-word;
+}
+
+.d-tooltip-pointer {
+  position: relative;
+  background: transparent;
+}
+
+.d-tooltip-pointer:before,
+.d-tooltip-pointer:after {
+  position: absolute;
+  pointer-events: none;
+  border: solid transparent;
+  bottom: 100%;
+  content: "";
+  height: 0;
+  width: 0;
+}
+
+.d-tooltip-pointer:after {
+  border-bottom-color: $d-tooltip-background;
+  border-width: 8px;
+  left: 50%;
+  margin-left: -8px;
+  display: none;
+}
+
+.d-tooltip-pointer:before {
+  border-bottom-color: $d-tooltip-border;
+  border-width: 9px;
+  left: 50%;
+  margin-left: -9px;
+  display: none;
+}
+
+.d-tooltip-content {
+  padding: 0.5em;
+  font-size: 0.8em;
+  color: $primary-medium;
+  line-height: 1.4em;
+}
+.d-tooltip-content iframe {
+  border: 0;
+  background: transparent;
+}
+
+.cooked span.artifact-card {
+  cursor: pointer;
+}

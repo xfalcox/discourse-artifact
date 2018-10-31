@@ -1,4 +1,8 @@
+// for mini-racer
 import { cards } from "discourse-markdown/card-database";
+
+// for browser
+//import { cards } from "discourse/plugins/discourse-artifact/discourse-markdown/card-database";
 
 // https://stackoverflow.com/a/6969486
 function escapeRegExp(string) {
@@ -23,21 +27,24 @@ export function setup(helper) {
        matcher: cardRegex(),  //regex flags are NOT supported
        onMatch: function(buffer, matches, state) {
 
-           let tag = "span";
-           let className = "artifact-card";
+         let cardName = cards.find((e) => e.name === matches[0]).misc.name_plainstring;
+         let url = `https://articraft.io/embed/cards/view/${cardName}`;
 
-           let token = new state.Token("card_open", tag, 1);
-           token.attrs = [["class", className]];
+         let tag = "span";
+         let className = "artifact-card";
 
-           buffer.push(token);
+         let token = new state.Token("card_open", tag, 1);
+         token.attrs = [["class", className], ["data-tooltip", `<iframe src="${url}" height="370" width="245">`]];
 
-           token = new state.Token("text", "", 0);
-           token.content = matches[0];
+         buffer.push(token);
 
-           buffer.push(token);
+         token = new state.Token("text", "", 0);
+         token.content = matches[0];
 
-           token = new state.Token("card_close", tag, -1);
-           buffer.push(token);
+         buffer.push(token);
+
+         token = new state.Token("card_close", tag, -1);
+         buffer.push(token);
 
         }
      });
